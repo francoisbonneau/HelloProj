@@ -52,4 +52,5 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 18
-    - run: npx semantic-release
+      env:
+        GITHUB_TOKEN: ${{ secrets.SECRET }}
