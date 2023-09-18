@@ -49,8 +49,8 @@ jobs:
     needs: [build]
     steps:
     - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 18
+    - name: Semantic Release
+      uses: cycjimmy/semantic-release-action@v3
+      id: semantic
       env:
-        GITHUB_TOKEN: ${{ secrets.SECRET }}
+        GITHUB_TOKEN: ${{ github.token }}
