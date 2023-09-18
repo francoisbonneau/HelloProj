@@ -5,9 +5,6 @@ name: CI
 on:
   push:
     branches: [ "master" ]
-    
-permissions:
-  contents: write
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
@@ -15,12 +12,9 @@ env:
 
 jobs:
   format:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: RafikFarhad/clang-format-github-action@v3
-        with:
-          sources: "include/**/*.h,src/**/*.cpp,tests/*.cpp,mains/*.cpp"
+    uses: ring-team/actions/.github/workflows/format.yml@master
+    secrets:
+      TOKEN: ${{ secrets.TOKEN }}
 
   build:
     # The CMake configure and build commands are platform agnostic and should work equally well on Windows or Mac.
