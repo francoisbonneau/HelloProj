@@ -5,8 +5,6 @@ name: CI
 on:
   push:
     branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
     
 permissions:
   contents: write
@@ -40,7 +38,7 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DHELLOWORLD_WITH_TESTS="ON" -DHELLOWORLD_WITH_EXECUTABLES="OFF" ..
+        cmake -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DHELLOWORLD_WITH_TESTS=ON -DHELLOWORLD_WITH_EXECUTABLES=OFF ..
         cmake --build . --config ${{env.BUILD_TYPE}} 
         ctest -C ${{env.BUILD_TYPE}}
 
@@ -49,8 +47,10 @@ jobs:
     needs: [build]
     steps:
     - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
       with:
-        node-version: 18
+        token: ${{ secrets.TOKEN }}
+    - name: Semantic Release
+      uses: cycjimmy/semantic-release-action@v3
+      id: semantic
       env:
-        GITHUB_TOKEN: ${{ secrets.SECRET }}
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
