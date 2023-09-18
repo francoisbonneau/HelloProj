@@ -1,7 +1,7 @@
-#include<basic/messages.h>
+#include <basic/messages.h>
 
 int main()
 {
-	hello_world();
-	return 0;
+    hello_world();
+    return 0;
 }

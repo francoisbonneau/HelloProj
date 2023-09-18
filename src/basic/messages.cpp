@@ -1,6 +1,6 @@
-#include <iostream>
 #include <HelloProjConfig.h>
 #include <basic/messages.h>
+#include <iostream>
 
 void hello_world()
 {
@@ -9,5 +9,6 @@ void hello_world()
 
 void print_version()
 {
-    std::cout << "project version is " << HelloProj_VERSION_MAJOR << "." << HelloProj_VERSION_MINOR << std::endl;
+    std::cout << "project version is " << HelloProj_VERSION_MAJOR << "."
+              << HelloProj_VERSION_MINOR << std::endl;
 }
