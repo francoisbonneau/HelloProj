@@ -28,14 +28,16 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} ..
-        cmake --build . --config ${{env.BUILD_TYPE}}
+        cmake -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCPACK_PACKAGE_VERSION:STRING=1.0 -DCPACK_SYSTEM_NAME:STRING=linux-Release ..
+        cmake --build . --config ${{env.BUILD_TYPE}} 
         cmake --build . --target package
 
     - name: Upload
       uses: softprops/action-gh-release@v1
       with:
         files: "build/*.tar.gz"
+        name: V4.0
+        tag_name: v4.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
