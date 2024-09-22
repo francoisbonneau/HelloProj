@@ -4,7 +4,7 @@ name: CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: 
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
@@ -14,14 +14,14 @@ jobs:
 #  format:
 #    uses: Geode-solutions/actions/.github/workflows/format.yml@master
 #    secrets:
-#      TOKEN: ${{ secrets.TOKEN }}
+#      TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build:
     # The CMake configure and build commands are platform agnostic and should work equally well on Windows or Mac.
     # You can convert this to a matrix build if you need cross-platform coverage.
     # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
     runs-on: ubuntu-latest
-#    needs: [format]
+    #needs: [format]
 
     steps:
     - uses: actions/checkout@v4
